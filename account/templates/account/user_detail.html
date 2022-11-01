@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}- {{object.username}}{% endblock title %}
+
+{% block main %}
+<div id="s">
+    <pre>
+        ID: {{object.id}}
+        USERNAME: {{object.username}}
+        EMAIL: {{object.email}}
+        FIRST NAME: {{object.first_name}}
+        LAST NAME: {{object.last_name}}
+    </pre>
+    <br>
+    <a href="{% url 'account:change' pk=object.id %}">Change user</a>
+</div>
+{% endblock main %}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>E-Store {% block title %}{% endblock title %}</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    </head>
+    <body>
+        <header>
+            <a href="{% url 'store' %}">E-Store</a>
+            <a href="{% url 'account:profile' %}">Account</a>
+            <a href="{% url 'account:login' %}">Login</a>
+            <a href="{% url 'account:logout' %}">Logout</a>
+            <a href="{% url 'account:register' %}">Register</a>
+        </header>
+        {% block main %}{% endblock main %}
+        <footer></footer>
+    </body>
+</html>
