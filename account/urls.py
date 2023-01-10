@@ -16,5 +16,5 @@ urlpatterns=[
     path('login/',LoginView.as_view(),name="login"),
     path('logout/',LogoutView.as_view(),name="logout"),
     path('register/',RegisterView.as_view(),name="register"),
-    path('id/<pk>/change',ChangeUserView.as_view(),name="change"),
+    path('id/<pk>/change',ChangeUserView.as_view(),name="change")
 ]
