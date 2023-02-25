@@ -20,5 +20,6 @@ from store.views import StoreView
 urlpatterns = [
     path('admin/', storeAdmin.urls),
     path('',StoreView.as_view(),name="store"),
-    path('accounts/',include('account.urls'),name="account"),
+    path('account/',include('account.urls'),name="account"),
+    path('pages/', include('django.contrib.flatpages.urls')),
 ]
