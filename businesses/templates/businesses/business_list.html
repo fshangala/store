@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="container">
+  <div class="row-cols-3">
+    {% for business in businesses %}
+    <div class="col bg-primary">{{business}}</div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock main %}
