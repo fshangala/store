@@ -16,10 +16,13 @@ Including another URLconf
 from store.admin import storeAdmin
 from django.urls import path, include
 from store.views import StoreView
+from django.views.generic import RedirectView
+from django.conf import settings
 
 urlpatterns = [
+    path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL+'images/favicon.ico')),
     path('admin/', storeAdmin.urls),
     path('',StoreView.as_view(),name="store"),
-    path('account/',include('account.urls'),name="account"),
+    path('accounts/',include('accounts.urls'),name="accounts"),
     path('pages/', include('django.contrib.flatpages.urls')),
 ]
