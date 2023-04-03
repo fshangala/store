@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'store',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -66,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'accounts.context_processors.logged_in_user',
             ],
         },
     },
@@ -126,5 +128,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL='/account/login/'
-PROFILE_URL='/account/profile/'
+LOGIN_URL='/accounts/login/'
+PROFILE_URL='/accounts/user-profile/'
+
+SITE_ID=1

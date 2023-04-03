@@ -9,7 +9,7 @@
     </head>
     <body>
         <header>
-            <nav class="navbar bg-light fixed-top shadow">
+            <nav class="navbar bg-light shadow mb-3">
                 <div class="container-fluid">
                   <a class="navbar-brand" href="{% url 'store' %}">E-Store</a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -33,12 +33,12 @@
                             Account
                           </a>
                           <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'account:profile' %}">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                              <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="{% url 'account:logout' %}">Logout</a></li>
+                            {% if l_user.id %}
+                            <li><a class="dropdown-item" href="{% url 'accounts:user-profile' %}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
+                            {% else %}
+                            <li><a class="dropdown-item" href="{% url 'accounts:login' %}">Login or Sign up</a></li>
+                            {% endif %}
                           </ul>
                         </li>
                       </ul>
