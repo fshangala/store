@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{% load static %}
+<div class="container">
+  <div class="row">
+    {% for inventory_item in inventory %}
+    <div class="col-sm-4">
+      <div class="card">
+        <img src="{% static 'images/estore-square-black.png' %}" class="rounded img-thumbnail" />
+        <div class="card-body">
+          <p class="card-text">{{inventory_item.name}} <span class="badge bg-primary">{{inventory_item.stock.last.retail}}</span></p>
+          <div class="btn-group">
+            <a href="{% url 'businesses:buy' pk=inventory_item.stock.last.id quantity=1 %}" class="btn btn-primary">Buy</a>
+            <a href="{% url 'businesses:detail' pk=inventory_item.business.id %}" class="btn btn-primary">{{inventory_item.business.name}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock main %}

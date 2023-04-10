@@ -6,9 +6,9 @@ from businesses.models import (
   Inventory
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
-from businesses.forms import InventoryCreateForm
+from businesses.forms import InventoryCreateForm, RegisterBusinessForm
 from .forms import (
-  StockCreateForm
+  StockCreateForm,
 )
 
 class StockView(LoginRequiredMixin,View):
@@ -66,13 +66,26 @@ class InventoryView(LoginRequiredMixin,View):
     }
     return context
   
-class Businesses(LoginRequiredMixin,generic.ListView):
-  model=Business
-  context_object_name="businesses"
+class Businesses(LoginRequiredMixin,View):
   template_name="seller/businesses.html"
   
-  def get_queryset(self):
-    return self.request.user.businesses.all()
+  def get(self,request):
+    context=self.get_context_data()
+    return render(request, self.template_name, context=context)
+  
+  def post(self,request):
+    context=self.get_context_data()
+    registerBusinessForm=RegisterBusinessForm(request=request,data=request.POST)
+    if registerBusinessForm.is_valid():
+      registerBusinessForm.save()
+    return render(request, self.template_name, context=context)
+  
+  def get_context_data(self):
+    context = {
+      "businesses":self.request.user.businesses.all(),
+      "registerBusinessForm":RegisterBusinessForm(request=self.request,data=self.request.GET)
+    }
+    return context
   
 class Dashboard(LoginRequiredMixin,generic.DetailView):
   model=Business

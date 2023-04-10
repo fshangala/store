@@ -3,9 +3,9 @@
 {% block main %}
 {% load static %}
 <div class="container">
-  <div class="row-cols-3">
+  <div class="row">
     {% for business in businesses %}
-    <div class="col bg-primary">
+    <div class="col-sm-4 bg-primary">
       <div class="card">
         <img class="card-img-top" src="{% static 'images/estore-square-black.png' %}" alt="" />
         <div class="card-footer">
@@ -15,5 +15,7 @@
     </div>
     {% endfor %}
   </div>
+  <center>
+  </center>
 </div>
 {% endblock main %}

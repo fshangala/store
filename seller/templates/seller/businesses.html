@@ -2,6 +2,33 @@
 
 {% block main %}
 <div class="container">
+  <center class="mb-3">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerBusiness">Register Business</button>
+  </center>
+  
+  <div class="modal fade" tabindex="-1" id="registerBusiness">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Register Business</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {{registerBusinessForm.errors}}
+          <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="id_name">Name</label>
+              {{registerBusinessForm.name}}
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="list-group">
     {% for business in businesses %}
     <a class="list-group-item" href="{% url 'seller:dashboard' pk=business.id %}">{{business}}</a>

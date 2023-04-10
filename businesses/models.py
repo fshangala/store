@@ -33,8 +33,16 @@ class Stock(models.Model):
   def __str__(self):
     return self.inventory.name + " " + str(self.retail)
 
+class Cart(models.Model):
+  customer=models.ForeignKey(User, related_name="carts", on_delete=models.CASCADE)
+  status=models.CharField(max_length=200,choices=[
+    ("pending","PENDING"),
+    ("paid","PAID"),
+    ("canceled","CANCELED"),
+  ],default="pending")
+
 class Purchase(models.Model):
-  customer=models.ForeignKey(User, related_name="purchases", on_delete=models.CASCADE)
+  cart=models.ForeignKey(Cart, related_name="purchases", on_delete=models.CASCADE)
   stock=models.ForeignKey(Stock, related_name="purchases", on_delete=models.CASCADE)
   quantity=models.IntegerField()
   discount=models.FloatField(default=0.0)
