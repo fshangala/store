@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
 
 {% block main %}
+{% load static %}
 <div class="container">
   <div class="row-cols-3">
     {% for business in businesses %}
-    <div class="col bg-primary">{{business}}</div>
+    <div class="col bg-primary">
+      <div class="card">
+        <img class="card-img-top" src="{% static 'images/estore-square-black.png' %}" alt="" />
+        <div class="card-footer">
+          <a href="" class="btn w-100">{{business.name}}</a>
+        </div>
+      </div>
+    </div>
     {% endfor %}
   </div>
 </div>

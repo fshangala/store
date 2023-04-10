@@ -7,15 +7,42 @@ from businesses.models import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from businesses.forms import InventoryCreateForm
+from .forms import (
+  StockCreateForm
+)
 
-# Create your views here.
-class InventoryView(View):
+class StockView(LoginRequiredMixin,View):
+  template_name="seller/stock.html"
   
   def get(self,request,pk):
     context = self.get_context_data(request, pk)
+    context["stockCreateForm"]=StockCreateForm(business=context["business"])
+    return render(request, self.template_name, context=context)
+  
+  def post(self,request,pk):
+    context = self.get_context_data(request, pk)
+    stockCreateForm=StockCreateForm(business=context["business"],data=request.POST)
     
-    template_name = "seller/inventory.html"
-    return render(request, template_name, context=context)
+    if stockCreateForm.is_valid():
+      stockCreateForm.save()
+    
+    context["stockCreateForm"]=stockCreateForm
+      
+    return render(request, self.template_name, context=context)
+  
+  def get_context_data(self,request,pk)->dict:
+    context = {
+      "business":request.user.businesses.get(pk=pk),
+    }
+    return context
+  
+# Create your views here.
+class InventoryView(LoginRequiredMixin,View):
+  template_name="seller/inventory.html"
+  def get(self,request,pk):
+    context = self.get_context_data(request, pk)
+    
+    return render(request, self.template_name, context=context)
   
   def post(self,request,pk):
     context = self.get_context_data(request, pk)

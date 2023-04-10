@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{% load static %}
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'seller:dashboard' %}">Businesses</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'seller:dashboard' pk=business.id %}">{{business.name}}</a></li>
+      <li class="breadcrumb-item active">Stock</li>
+    </ol>
+  </nav>
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">{{business}} - Stock</h3>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addInventoryModal">Add</button>
+      <div class="modal fade" tabindex="-1" id="addInventoryModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Add Stock</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              {{stockCreateForm.errors}}
+              <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="id_inventory">Inventory</label>
+                  {{stockCreateForm.inventory}}
+                </div>
+                <div class="mb-3">
+                  <label for="id_order">Order</label>
+                  {{stockCreateForm.order}}
+                </div>
+                <div class="mb-3">
+                  <label for="id_retail">Retail</label>
+                  {{stockCreateForm.retail}}
+                </div>
+                <div class="mb-3">
+                  <label for="id_retail">Quantity</label>
+                  {{stockCreateForm.quantity}}
+                </div>
+                <div class="mb-3">
+                  <button type="submit" class="btn btn-primary">Add Inventory</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">ORDER</th>
+              <th scope="col">RETAIL</th>
+              <th scope="col">IN STOCK</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            {% for item in business.inventory.all %}
+            <tr scope="row">
+              <th colspan="5">{{item.name}}</th>
+            </tr>
+
+            {% for stockitem in item.stock.all %}
+            <tr  scope="row">
+              <td>{{stockitem.id}}</td>
+              <td>{{stockitem.order}}</td>
+              <td>{{stockitem.retail}}</td>
+              <td>{{stockitem.in_stock}}</td>
+              <td>
+                <div class="btn-group">
+                  <a href="" class="btn btn-primary">View</a>
+                  <a href="" class="btn btn-danger">Delete</a>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main %}
