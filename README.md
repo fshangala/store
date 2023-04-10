@@ -11,3 +11,4 @@
 
 ### Seller
 - Create inventory
+- Create stock
