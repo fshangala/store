@@ -13,7 +13,7 @@ class CartView(View):
   
   def get_context_data(self,pk):
     context={
-      "cart":None
+      "cart":Cart.objects.get(pk=pk)
     }
     return context
   
@@ -32,7 +32,7 @@ class BuyStock(LoginRequiredMixin,View):
     if buyForm.is_valid():
       buyForm.save()
       
-    return redirect("businesses:cart",kwargs={"pk":cart.id})
+    return redirect("businesses:cart",pk=cart.id)
   
 class BusinessView(LoginRequiredMixin,View):
   template_name="businesses/business_detail.html"

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{% load static %}
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <theader>
+            <tr>
+              <th>ID</th>
+              <th>NAME</th>
+              <th>QUANTITY</th>
+              <th>AMOUNT</th>
+            </tr>
+          </theader>
+          <tbody>
+            {% for purchase in cart.purchases.all %}
+            <tr>
+              <td>{{purchase.id}}</td>
+              <td>{{purchase.stock.inventory.name}}</td>
+              <td>{{purchase.quantity}}</td>
+              <td>{{purchase.amount}}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+              <th colspan="3">TOTAL</th>
+              <th>{{cart.total_amount}}</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mb-3">
+        <a href="" class="btn btn-primary">Pay</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main %}

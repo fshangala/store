@@ -40,6 +40,12 @@ class Cart(models.Model):
     ("paid","PAID"),
     ("canceled","CANCELED"),
   ],default="pending")
+  
+  def total_amount(self):
+    total = 0.0
+    for purchase in self.purchases.all():
+      total += purchase.amount()
+    return total
 
 class Purchase(models.Model):
   cart=models.ForeignKey(Cart, related_name="purchases", on_delete=models.CASCADE)
