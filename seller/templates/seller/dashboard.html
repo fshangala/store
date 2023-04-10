@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{% load static %}
+<div class="container">
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 col-sm-4">
+          <img src="{% static 'images/estore-square-black.png' %}" class="rounded img-thumbnail" />
+        </div>
+        <div class="col-12 col-sm-6">
+          <h3>{{business}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h3 class="card-title">Products</h3>
+      <div class="list-group">
+        <a href="{% url 'seller:inventory' pk=business.id %}" class="list-group-item mb-3">Inventory</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main %}

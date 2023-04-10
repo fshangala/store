@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="container">
+  <div class="list-group">
+    {% for business in businesses %}
+    <a class="list-group-item" href="{% url 'seller:dashboard' pk=business.id %}">{{business}}</a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock main %}

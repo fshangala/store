@@ -10,8 +10,10 @@
     <body>
         <header>
             <nav class="navbar bg-light shadow mb-3">
-                <div class="container-fluid">
-                  <a class="navbar-brand" href="{% url 'store' %}">E-Store</a>
+                <div class="container">
+                  <a class="navbar-brand" href="{% url 'store' %}">
+                    <img src="{% static 'images/estore.png' %}" height="20" alt="logo" />
+                  </a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                     <span class="navbar-toggler-icon"></span>
                   </button>
@@ -27,6 +29,9 @@
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="{% url 'businesses:list' %}">Businesses</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'seller:dashboard' %}">Seller</a>
                         </li>
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

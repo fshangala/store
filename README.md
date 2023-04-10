@@ -1,5 +1,13 @@
 # store
 
 # Changes
+
 ## 1.0
-1. User session authentication (login,logout)
+
+### Accounts
+- User session authentication (login,logout)
+
+### Businesses
+
+### Seller
+- Create inventory

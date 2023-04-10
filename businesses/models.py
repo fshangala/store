@@ -10,6 +10,7 @@ class Business(models.Model):
     return self.name
 
 class Inventory(models.Model):
+  business=models.ForeignKey(Business,related_name="inventory",on_delete=models.CASCADE)
   name=models.CharField(max_length=200,unique=True)
   description=models.TextField()
   
