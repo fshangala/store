@@ -9,7 +9,7 @@
       <div class="card">
         <img class="card-img-top" src="{% static 'images/estore-square-black.png' %}" alt="" />
         <div class="card-footer">
-          <a href="" class="btn w-100">{{business.name}}</a>
+          <a href="{% url 'businesses:detail' pk=business.id %}" class="btn w-100">{{business.name}}</a>
         </div>
       </div>
     </div>
