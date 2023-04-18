@@ -26,5 +26,6 @@ urlpatterns = [
     path('accounts/',include('accounts.urls'),name="accounts"),
     path('businesses/',include('businesses.urls'),name="businesses"),
     path('seller/',include('seller.urls'),name="seller"),
+    path('interactions/',include('interactions.urls'),name="interactions"),
     path('pages/', include('django.contrib.flatpages.urls')),
 ]
